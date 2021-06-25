@@ -2,12 +2,10 @@ import AsyncStorage from "@react-native-community/async-storage"
 
 import { load, loadString, save, saveString, clear, remove } from "./storage"
 
-// fixtures
 const VALUE_OBJECT = { x: 1 }
 const VALUE_STRING = JSON.stringify(VALUE_OBJECT)
 
 beforeEach(() => {
-  // @ts-ignore
   AsyncStorage.getItem.mockReturnValue(Promise.resolve(VALUE_STRING))
 })
 

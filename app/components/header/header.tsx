@@ -1,18 +1,19 @@
 import React from "react"
 import { View, ViewStyle, TextStyle } from "react-native"
-import { HeaderProps } from "./header.props"
-import { Button } from "../button/button"
-import { Text } from "../text/text"
-import { Icon } from "../icon/icon"
-import { spacing } from "../../theme"
-import { translate } from "../../i18n/"
+import LinearGradient from "react-native-linear-gradient"
 
-// static styles
+import { HeaderProps } from "./header.props"
+import { Button, Text, Icon } from "app/components"
+import { spacing, color } from "app/theme"
+import { translate } from "app/i18n/"
+
+const isIos = Platform.OS === "ios"
+
 const ROOT: ViewStyle = {
   flexDirection: "row",
   paddingHorizontal: spacing[4],
   alignItems: "center",
-  paddingTop: spacing[5],
+  paddingTop: isIos ? spacing[8] : spacing[4],
   paddingBottom: spacing[5],
   justifyContent: "flex-start",
 }
@@ -38,7 +39,10 @@ export function Header(props: HeaderProps) {
   const header = headerText || (headerTx && translate(headerTx)) || ""
 
   return (
-    <View style={{ ...ROOT, ...style }}>
+    <LinearGradient
+      colors={[color.palette.blue, color.palette.lightBlue]}
+      style={{ ...ROOT, ...style }}
+    >
       {leftIcon ? (
         <Button preset="link" onPress={onLeftPress}>
           <Icon icon={leftIcon} />
@@ -56,6 +60,6 @@ export function Header(props: HeaderProps) {
       ) : (
         <View style={RIGHT} />
       )}
-    </View>
+    </LinearGradient>
   )
 }

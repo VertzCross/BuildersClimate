@@ -28,6 +28,7 @@ import { RootStore, RootStoreProvider, setupRootStore } from "./models"
 // stack navigation, use `createNativeStackNavigator` in place of `createStackNavigator`:
 // https://github.com/kmagiera/react-native-screens#using-native-stack-navigator
 import { enableScreens } from "react-native-screens"
+import { LoadingScreen } from "./screens"
 enableScreens()
 
 export const NAVIGATION_PERSISTENCE_KEY = "NAVIGATION_STATE"
@@ -68,6 +69,7 @@ function App() {
           initialState={initialNavigationState}
           onStateChange={onNavigationStateChange}
         />
+        <LoadingScreen />
       </SafeAreaProvider>
     </RootStoreProvider>
   )
